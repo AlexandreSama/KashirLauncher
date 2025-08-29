@@ -10,7 +10,7 @@ export default function PageTransition({ children }: Props) {
             animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: -10, scale: 0.995, filter: "blur(6px)" }}
             transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            style={{ willChange: "opacity, transform, filter" }}
+            style={{ willChange: "opacity, transform, filter", height: "100%" }}
         >
             {children}
         </motion.div>

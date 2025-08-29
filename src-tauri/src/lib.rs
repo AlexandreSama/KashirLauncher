@@ -5,8 +5,12 @@ mod security;
 
 use tauri::{AppHandle, Manager};
 use tauri::Emitter;
+use tauri::image::Image;
 use tauri::menu::{MenuBuilder, MenuItemBuilder};
 use tauri::tray::TrayIconBuilder;
+use std::convert::TryFrom; // <- important
+pub const TRAY_ICON: tauri::image::Image<'static> =
+    tauri::include_image!("icons/icon.png");
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -50,6 +54,7 @@ fn build_tray(app: &AppHandle) -> tauri::Result<()> {
 
     TrayIconBuilder::new()
         .menu(&menu)
+        .icon(TRAY_ICON)
         .show_menu_on_left_click(false)
         .tooltip("Kashir Launcher")
         .on_menu_event(|tray, event| {
